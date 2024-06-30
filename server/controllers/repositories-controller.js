@@ -34,7 +34,7 @@ class RepositoriesController {
             
             return res.json(repository)
         } catch (e) {
-            console.log(e)
+            next(e)
         }
     } 
 
