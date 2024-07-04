@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Card } from 'react-bootstrap';
 
-import { useForm } from "react-hook-form"
+import { useForm, SubmitHandler } from "react-hook-form"
 import { Context } from "..";
 import RepositoryService from "../services/GetRepository";
 import { IResponsRepository } from "../models/response/ResponsRepository";
@@ -19,9 +19,17 @@ interface MyRepository {
 const FormPage: FC = () => {
     const {store} = useContext(Context)
 
-    const { register, formState: { errors, isValid,  isDirty }} = useForm<MyRepository>({
+    const { register, handleSubmit, formState: { errors, isValid,  isDirty }} = useForm<MyRepository>({
         mode: 'onBlur',
       })
+
+    const submit: SubmitHandler<MyRepository> = (data) => {
+        // store.getRes(email, number.replace(/[-]/g,"")) 
+        // setEmail('')
+        // setNumber('')
+        send()
+        setInputValue('')
+    }
     
     const [inputValue, setInputValue] = useState<string>('')
     const [messageSync , setMessageSync] = useState<string>('')
@@ -53,7 +61,7 @@ const FormPage: FC = () => {
     return(
         <Container>
             <Card className="card-class">
-                <Form >
+                <Form onSubmit={handleSubmit(submit)}>
                     <Form.Group className="mb-3 form-class" controlId="exampleForm.ControlInput1" style={{height: '90px'}}>
                                 <Form.Label>Введите ID или имя репозитория</Form.Label>
                                 <Form.Control 
@@ -73,11 +81,12 @@ const FormPage: FC = () => {
 
                     </div>
                     {errors.inputValue && <p className="red-error">{errors?.inputValue?.message?.toString()}</p>}
+
+                    <Button type="submit" disabled={!inputValue}>Get a repository by name or ID</Button> 
  
                 </Form>
             </Card>
-
-            <Button onClick={send} disabled={!inputValue}>Get a repository by name or ID</Button> 
+            
                 { 
                     store.repositoryErr ? <div className="red-error">{store.repositoryErr}</div> 
                     :
@@ -88,6 +97,7 @@ const FormPage: FC = () => {
                         <div> {store.repository.stargazers_count}</div>
                     </div> 
                 }
+                <br></br>
      
             <Button onClick={getRepositories} >Get all repositories</Button>
                 {repositories.map(repository => 

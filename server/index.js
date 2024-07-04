@@ -27,12 +27,12 @@ const start = async  () => {
         RepositoriesController.searchRepositoriesAndSaveBD()
 
         // Могу сделать в БД таблицу с настройками и это значение получать оттуду, а также роут с изменением настроек
-        let  intervalTime = 1000
+        let  intervalTime = 1000*60*60*24
 
         // когда время интервала маленькое функция RepositoriesController.updateRepositories() - не успевает завершиться, желательно не ставить меньше 10 секунд - 1 мин
         // аналогично с вызовом функции - если нажимать кнопуц сильно часто(могу добавить задержку на нажатие на клиенте) 
         let filterIntervalTime = (intervalTime) => {
-            if (intervalTime < 10000) intervalTime = 10000
+            if (intervalTime < 10000) intervalTime = 60000
             return intervalTime
         }
 

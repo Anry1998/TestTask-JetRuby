@@ -1,7 +1,3 @@
-import React from 'react';
-
-
-
 import './App.css';
 import FormPage from './pages/FormPage';
 
