@@ -17,12 +17,15 @@ class RepositoriesService {
     }
 
     async saveRepositoriesInDBTop(arr) {
+        // Cannot read properties of undefined (reading 'json')
         for(let i=0; i<arr.length; i++) {
             const repositories = await TopRepositories.findOne({where: {name: arr[i].name}})
             if (!repositories) {
                 await TopRepositories.create({name: arr[i].name, html_url: arr[i].html_url, stargazers_count: arr[i].stargazers_count})
             }
         }
+        
+        
     }
 
     async saveRepositoriesInDBAll(arr) {
@@ -87,6 +90,20 @@ class RepositoriesService {
         }
         return repository
     }
-}
+
+    // updateRepositories =  setInterval(() => {
+    //     Conrroller.updateRepositories()
+    // }, 3000)
+
+    // async stopInterval(updateRepositories) {
+    //     console.log('stopInterval')
+    //     clearInterval(updateRepositories)
+    // }
+
+    // updateRepositories = setInterval(() => {
+    //     console.log('ok') 
+    //     clearInterval(updateRepositories)
+    // }, 3000)
+} 
 
 module.exports = new RepositoriesService()

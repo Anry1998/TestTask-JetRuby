@@ -45,6 +45,22 @@ const TopRepositories = sequelize.define('toprepositories', {
     },
 })
 
+// const Settings = sequelize.define('settings', {
+//     id: {
+//         type: DataTypes.INTEGER, 
+//         primaryKey: true, 
+//         autoIncrement: true, 
+//     }, 
+
+//     intervalTime: {
+//         type: DataTypes.STRING, 
+//         require: true
+//     },
+
+// })
+
+
+
 module.exports = {
     AllRepositories,
     TopRepositories

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "bin": "./user.js",
   "scripts": {
     "dev": " nodemon index.js"
   },
@@ -11,14 +12,20 @@
   "license": "ISC",
   "dependencies": {
     "cls-hooked": "^4.2.2",
+    "commander": "^2.9.0",
     "cors": "^2.8.5",
+    "crypto-random-string": "^3.3.1",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-validator": "^7.1.0",
+    "inquirer": "^3.0.6",
+    "mysql2": "^3.10.2",
+    "node-fetch": "^2.6.1",
     "sequelize": "^6.37.3",
     "umzug": "^3.3.1"
   },
   "devDependencies": {
+    "@types/commander": "^2.12.2",
     "nodemon": "^3.1.4",
     "sequelize-cli": "^6.6.2"
   }
